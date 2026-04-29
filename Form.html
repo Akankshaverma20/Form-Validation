@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+        .container {
+            width: 420px;
+            margin: 40px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+        }
+        h2 {
+            text-align: center;
+        }
+        label {
+            font-weight: bold;
+        }
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin: 6px 0 12px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        .gender {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+        .gender input {
+            width: auto;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+    <link rel="stylesheet" href="Form.css">
+</head>
+<body>
+    <body>
+
+<div class="container">
+    <h2>Registration Form</h2>
+    
+        <form onsubmit="return validateForm()">
+
+    
+
+    
+
+        <!-- Prefix -->
+        <label>Prefix:</label>
+        <select name="prefix" required>
+            <option value="">Select</option>
+            <option>Mr.</option>
+            <option>Ms.</option>
+            <option>Mrs.</option>
+            <option>Dr.</option>
+        </select>
+
+        <!-- First Name -->
+        <label>First Name:</label>
+        <input type="text" name="first_name" required>
+
+        <!-- Last Name -->
+        <label>Last Name:</label>
+        <input type="text" name="last_name" required>
+
+        <!-- Username -->
+        <label>Username:</label>
+        <input type="text" name="username" required>
+
+        <!-- Date of Birth -->
+        <label>Date of Birth:</label>
+        <input type="date" name="dob" required>
+
+        <input type="password" id="password" placeholder="Password"
+        pattern="(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).{6,}"
+        required>
+
+    <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+
+    <small id="errorMsg" style="color:red;"></small>
+
+        <!-- Gender -->
+        <label>Gender:</label>
+        <div class="gender">
+            <input type="radio" name="gender" value="male"> Male
+            <input type="radio" name="gender" value="female"> Female
+            <input type="radio" name="gender" value="other"> Other
+        </div>
+
+        <!-- Contact Info -->
+        <label>Contact Number:</label>
+        <input type="tel" name="contact" required>
+
+        <!-- Email -->
+        <label>Email ID:</label>
+        <input type="email" name="email" required>
+
+        <!-- Age -->
+        <label>Age:</label>
+        <input type="number" name="age" min="1" max="120" required>
+
+        <!-- Submit -->
+        <button type="submit">Register</button>
+
+
+    </form>
+</div>
+<script id="g2f7y9">
+function validateForm() {
+    let password = document.getElementById("password").value;
+    let confirmPassword = document.getElementById("confirmPassword").value;
+    let errorMsg = document.getElementById("errorMsg");
+
+    // Clear previous message
+    errorMsg.innerText = "";
+
+    // Password match check
+    if (password !== confirmPassword) {
+        errorMsg.innerText = "❌ Passwords do not match";
+        return false;
+    }
+
+    // Extra: password length safety (backup)
+    if (password.length < 6) {
+        errorMsg.innerText = "❌ Password must be at least 6 characters";
+        return false;
+    }
+
+    // Extra: strong password check
+    let pattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/;
+    if (!pattern.test(password)) {
+        errorMsg.innerText = "❌ Use uppercase, lowercase & number";
+        return false;
+    }
+    // Show popup instead of alert
+    document.getElementById("successPopup").style.display = "flex";
+
+    return false; // stop actual submission (for demo)
+}
+
+function closePopup() {
+    document.getElementById("successPopup").style.display = "none";
+}
+
+    
+
+
+    
+</script>
+
+<div id="successPopup" class="popup">
+    <div class="popup-content">
+        <h3>✅ Successfully Registered!</h3>
+        <p>Your account has been created.</p>
+        <button onclick="closePopup()">OK</button>
+    </div>
+</div>
+</script>
+    
+    
+
+
+</body>
+</html>
